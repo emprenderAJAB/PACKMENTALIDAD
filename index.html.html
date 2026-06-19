@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack de Mentalidad y Finanzas - ¡Promoción Especial!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #f1f5f9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        header h1 span {
+            color: #38bdf8;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card.featured {
+            border: 2px solid #38bdf8;
+            background-color: #0f172a;
+            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 4px 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .card p.desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            min-height: 45px;
+            text-align: center;
+        }
+
+        /* --- Contenedor General de Vistas Previas --- */
+        .pack-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            min-height: 160px;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #334155;
+            flex-wrap: wrap;
+        }
+
+        .pack-preview img {
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+        }
+
+        .pack-preview img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Medidas de las fotos ajustables */
+        .img-pack1 {
+            width: 75px;
+            height: 110px;
+        }
+
+        .img-pack2 {
+            width: 85px; 
+            height: 125px;
+        }
+
+        .img-pack3 {
+            width: 130px;
+            height: 120px;
+        }
+
+        .spreadsheet-icon {
+            font-size: 2.8rem;
+            color: #107c41;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+        }
+
+        /* --- Estilos para la sección de Precios en Promoción --- */
+        .price-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .old-price {
+            font-size: 1.1rem;
+            color: #64748b;
+            text-decoration: line-through;
+            margin-bottom: -5px;
+        }
+
+        .new-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #22c55e; /* Verde brillante para destacar el descuento */
+            line-height: 1;
+        }
+
+        .new-price span {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: normal;
+        }
+
+        .promo-tag {
+            display: inline-block;
+            background-color: #ef4444; /* Rojo para el tag de HOY */
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-left: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .features li {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .features li strong {
+            color: #f1f5f9;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            background-color: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background-color: #0ea5e9;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 992px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Llevá tu mentalidad y finanzas al <span>siguiente nivel</span></h1>
+            <p>Aprovechá nuestros descuentos por tiempo limitado y descargá tu pack al instante.</p>
+        </header>
+
+        <div class="pricing-grid">
+            
+            <div class="card">
+                <h2>Pack Inicio Rápido</h2>
+                <p class="desc">La base imprescindible para romper el molde tradicional y cambiar tu mentalidad.</p>
+                
+                <div class="pack-preview">
+                    <img src="imagenes/1.jpg" alt="Padre Rico, Padre Pobre" class="img-pack1">
+                    <img src="imagenes/2.jpg" alt="Los Secretos de la Mente Millonaria" class="img-pack1">
+                    <img src="imagenes/3.jpg" alt="Piense y Hágase Rico" class="img-pack1">
+                </div>
+
+                <div class="price-container">
+                    <div class="old-price">Antes $3 USD</div>
+                    <div class="new-price">$1 <span>USD</span><span class="promo-tag">Hoy</span></div>
+                </div>
+
+                <ul class="features">
+                    <li><strong>Padre Rico, Padre Pobre</strong> (Robert Kiyosaki) – Educación financiera pura.</li>
+                    <li><strong>Los Secretos de la Mente Millonaria</strong> (T. Harv Eker) – Reprogramá tu patrón del dinero.</li>
+                    <li><strong>Piense y Hágase Rico</strong> (Napoleon Hill) – El clásico de la riqueza mental.</li>
+                </ul>
+                <a href="TU_LINK_DE_HOTMART_OPCION_1" class="btn">Quiero el Pack Inicio</a>
+            </div>
+
+            <div class="card featured">
+                <div class="badge">Más vendido</div>
+                <h2>Imperio de Ventas</h2>
+                <p class="desc">Para los que no solo quieren pensar en grande, sino salir a vender y facturar con mentalidad agresiva.</p>
+                
+		<div class="pack-preview">
+                    <img src="imagenes/1.jpg" alt="Padre Rico, Padre Pobre" class="img-pack1">
+                    <img src="imagenes/2.jpg" alt="Los Secretos de la Mente Millonaria" class="img-pack1">
+                    <img src="imagenes/3.jpg" alt="Piense y Hágase Rico" class="img-pack1">
+                </div>
+	   
+                <div class="pack-preview">
+                    <img src="imagenes/4.jpg" alt="Vendes o Vendes" class="img-pack2">
+                    <img src="imagenes/5.jpg" alt="Libro 2 Grant Cardone" class="img-pack2">
+                </div>
+
+                <div class="price-container">
+                    <div class="old-price">Antes $7 USD</div>
+                    <div class="new-price">$3 <span>USD</span><span class="promo-tag">Hoy</span></div>
+                </div>
+
+                <ul class="features">
+                    <li><strong>Todo lo del Pack Inicio</strong> (Los 3 libros base).</li>
+                    <li><strong>Vendes o Vendes</strong> (Grant Cardone) – Estrategias de cierre.</li>
+                    <li><strong>Configuración del Éxito</strong> (Grant Cardone) – Dominio total del mercado.</li>
+                </ul>
+                <a href="TU_LINK_DE_HOTMART_OPCION_2" class="btn">Quiero el Pack Ventas</a>
+            </div>
+
+            <div class="card">
+                <h2>Sistema Total</h2>
+                <p class="desc">El combo definitivo: Toda la teoría más las herramientas exactas de control y gestión diaria.</p>
+                
+                <div class="pack-preview">
+                    <span class="spreadsheet-icon">📊</span>
+                    <span style="font-size: 1.5rem; font-weight: bold; color: #38bdf8;">+</span>
+                    <img src="imagenes/pack-completo.jpg" alt="Todos los libros y Planillas Excel" class="img-pack3"> 
+                </div>
+
+                <div class="price-container">
+                    <div class="old-price">Antes $15 USD</div>
+                    <div class="new-price">$10 <span>USD</span><span class="promo-tag">Hoy</span></div>
+                </div>
+
+                <ul class="features">
+                    <li><strong>Los 5 libros incluidos</strong> (Pack Inicio + Pack Ventas).</li>
+                    <li><strong>Planilla de Control Financiero</strong> – Registrá ingresos, gastos y flujo de caja.</li>
+                    <li><strong>Planilla de Presupuestos</strong> – Cotizá materiales, mano de obra y márgenes.</li>
+                    <li><strong>Planilla de Hábitos</strong> – Trackeo visual de tus entrenamientos y metas.</li>
+                </ul>
+                <a href="TU_LINK_DE_HOTMART_OPCION_3" class="btn">Quiero el Sistema Total</a>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>🛡️ Compra 100% Segura | Acceso inmediato y de por vida para leer en cualquier dispositivo.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
